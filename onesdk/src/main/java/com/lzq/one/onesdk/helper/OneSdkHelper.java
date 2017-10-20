@@ -28,4 +28,7 @@ public class OneSdkHelper {
     public Observable<IdListBean> getIdList(){
         return RetrofitHelper.getInstence().getOneService().getIdList(OneSdk.channel,OneSdk.vertion,OneSdk.uuid,OneSdk.platform);
     }
+    public Observable<OnelistBean> getOneList(String data){
+        return RetrofitHelper.getInstence().getOneService().getOneList(data,OneSdk.channel,OneSdk.vertion,OneSdk.uuid,OneSdk.platform);
+    }
 }

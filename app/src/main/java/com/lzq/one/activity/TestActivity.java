@@ -1,15 +1,14 @@
-package com.lzq.one;
+package com.lzq.one.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.lzq.one.R;
 import com.lzq.one.onesdk.OneSdk;
 import com.lzq.one.onesdk.OneSdkBuilder;
-import com.lzq.one.onesdk.api.bean.IdListBean;
 import com.lzq.one.onesdk.api.bean.OnelistBean;
-import com.lzq.one.onesdk.api.bean.YiYuanNewsType;
 import com.lzq.one.onesdk.helper.RetrofitHelper;
 
 import rx.Observer;
@@ -22,12 +21,12 @@ import rx.subscriptions.CompositeSubscription;
  * Created by CTWLPC on 2017/10/19.
  */
 
-public class MainActivity extends AppCompatActivity{
+public class TestActivity extends AppCompatActivity{
     private CompositeSubscription mCompositeSubscription;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_test);
         OneSdkBuilder mBuilder = new OneSdkBuilder();
         mBuilder.vertion = "4.0.2";
         mBuilder.platform = "android";
@@ -41,17 +40,17 @@ public class MainActivity extends AppCompatActivity{
                 .subscribe(new Observer<OnelistBean>() {
                     @Override
                     public void onCompleted() {
-                        Log.i("lzq","onCompleted(MainActivity.java:33) onCompleted");
+                        Log.i("lzq","onCompleted(TestActivity.java:33) onCompleted");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("lzq","onError(MainActivity.java:38)"+e.toString());
+                        Log.i("lzq","onError(TestActivity.java:38)"+e.toString());
                     }
 
                     @Override
                     public void onNext(OnelistBean idListBean) {
-                        Log.i("lzq","onNext(MainActivity.java:43)"+idListBean.toString());
+                        Log.i("lzq","onNext(TestActivity.java:43)"+idListBean.toString());
                     }
                 });
         mCompositeSubscription.add(subscription);
