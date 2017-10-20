@@ -6,11 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lzq.one.R;
 import com.lzq.one.onesdk.api.bean.OnelistBean;
 import com.lzq.one.onesdk.utils.ImageLoader;
+import com.lzq.one.onesdk.utils.LogUtils;
 
 import java.util.List;
 
@@ -20,14 +22,13 @@ import java.util.List;
 
 public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.MyViewHolder>
 {
-    Context context;
-    List<OnelistBean.DataBean.ContentListBean> list;
-    int height =10;
+    private Context context;
+    private List<OnelistBean.DataBean.ContentListBean> list;
+    private HomePageRecycleOnClickListener mOnClickListener;
 
     public HomePageAdapter(Context context,List<OnelistBean.DataBean.ContentListBean> list) {
         this.context = context;
         this.list = list;
-        height = 10;
     }
 
     @Override
@@ -39,14 +40,18 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.MyView
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        height = height +1;
+        LogUtils.i(list.get(position).getItem_id());
+        LogUtils.i(list.get(position).getCategory());
+        LogUtils.i(list.get(position).getShare_info().getTitle());
         holder.title.setText(list.get(position).getTitle());
         holder.forword.setText(list.get(position).getForward());
         ImageLoader.loadImage(context,list.get(position).getImg_url(),holder.imageView);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (mOnClickListener != null){
+                    mOnClickListener.onClick(Integer.valueOf(list.get(position).getCategory()),list.get(position).getItem_id());
+                }
             }
         });
     }
@@ -63,6 +68,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.MyView
         TextView title;
         ImageView imageView;
         TextView forword;
+        LinearLayout linearLayout;
 
         public MyViewHolder(View view)
         {
@@ -70,13 +76,13 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.MyView
             title = (TextView) view.findViewById(R.id.title);
             forword = (TextView) view.findViewById(R.id.forword);
             imageView = (ImageView) view.findViewById(R.id.image);
+            linearLayout = (LinearLayout) view.findViewById(R.id.content_layout);
         }
     }
-    HomePageRecycleOnClickListener mOnClickListener;
-    interface HomePageRecycleOnClickListener{
-        void onClick(String name);
+    public interface HomePageRecycleOnClickListener{
+        void onClick(int category,String itemId);
     }
-    public void setmOnClickListener(HomePageRecycleOnClickListener mOnClickListener){
+    public void setHomeItemOnClickListener(HomePageRecycleOnClickListener mOnClickListener){
         this.mOnClickListener = mOnClickListener;
     }
 }

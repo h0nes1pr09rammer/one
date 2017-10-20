@@ -20,7 +20,7 @@ import java.util.List;
  * Created by CTWLPC on 2017/10/20.
  */
 
-public class HomePageFragment extends BaseFragment implements HomePageContract.View,SwipeRefreshLayout.OnRefreshListener{
+public class HomePageFragment extends BaseFragment implements HomePageContract.View,SwipeRefreshLayout.OnRefreshListener,HomePageAdapter.HomePageRecycleOnClickListener {
 
     private HomePagePresenter mHomePagePresenter;
     private RecyclerView mRecyclerView;
@@ -41,7 +41,8 @@ public class HomePageFragment extends BaseFragment implements HomePageContract.V
         list = new ArrayList<>();
         mRecyclerView = (RecyclerView) mView.findViewById(R.id.id_recyclerview);
         mHomePageAdapter = new HomePageAdapter(getActivity(),list);
-        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(3,1));
+        mHomePageAdapter.setHomeItemOnClickListener(this);
+        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         mRecyclerView.setAdapter(mHomePageAdapter);
         mSwipeRefreshLayout = (SwipeRefreshLayout) mView.findViewById(R.id.id_swiperefreshlayout);
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -74,5 +75,10 @@ public class HomePageFragment extends BaseFragment implements HomePageContract.V
     public void onRefresh() {
         mSwipeRefreshLayout.setRefreshing(true);
         mHomePagePresenter.loadData();
+    }
+
+    @Override
+    public void onClick(int category, String itemId) {
+        mHomePagePresenter.loadItemData(category,itemId);
     }
 }

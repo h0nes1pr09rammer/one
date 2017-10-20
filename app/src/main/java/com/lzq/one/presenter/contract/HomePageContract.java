@@ -17,5 +17,6 @@ public interface HomePageContract {
     }
     interface Presenter extends BasePresenter{
         void loadData();
+        void loadItemData(int category, String itemId);
     }
 }

@@ -5,6 +5,7 @@ import com.lzq.one.onesdk.api.bean.FlagBean;
 import com.lzq.one.onesdk.api.bean.IdListBean;
 import com.lzq.one.onesdk.api.bean.MovieBean;
 import com.lzq.one.onesdk.api.bean.MovieCommentBean;
+import com.lzq.one.onesdk.api.bean.MovieImgBean;
 import com.lzq.one.onesdk.api.bean.MovieListBean;
 import com.lzq.one.onesdk.api.bean.MoviePraisePostBean;
 import com.lzq.one.onesdk.api.bean.MusicBean;
@@ -62,7 +63,10 @@ public interface OneService {
 
     @GET("/api/movie/{item_id}/story/1/0?")
     //http://v3.wufazhuce.com:8000/api/movie/225/story/1/0?channel=wdj&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android
-    Observable<MovieBean> getMovie(@Path("item_id") String itemId, @Query("channel")String channel, @Query("version")String version, @Query("uuid")String uuid, @Query("platform")String platform);
+    Observable<MovieBean> getMovieContent(@Path("item_id") String itemId, @Query("channel")String channel, @Query("version")String version, @Query("uuid")String uuid, @Query("platform")String platform);
+
+    @GET("api/movie/detail/{item_id}?")
+    Observable<MovieImgBean> getMovieImg(@Path("item_id") String itemId, @Query("channel")String channel, @Query("source")String source, @Query("source_id")String source_id, @Query("version")String version, @Query("uuid")String uuid, @Query("platform")String platform);
 
     @GET("api/comment/praiseandtime/movie/{item_id}/0?")
     //http://v3.wufazhuce.com:8000/api/movie/detail/225?channel=wdj&source=summary&source_id=9095&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android
