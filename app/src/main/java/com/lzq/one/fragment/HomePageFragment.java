@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lzq.one.BaseFragment;
 import com.lzq.one.R;
@@ -42,10 +43,11 @@ public class HomePageFragment extends BaseFragment implements HomePageContract.V
         mRecyclerView = (RecyclerView) mView.findViewById(R.id.id_recyclerview);
         mHomePageAdapter = new HomePageAdapter(getActivity(),list);
         mHomePageAdapter.setHomeItemOnClickListener(this);
-        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mHomePageAdapter);
         mSwipeRefreshLayout = (SwipeRefreshLayout) mView.findViewById(R.id.id_swiperefreshlayout);
         mSwipeRefreshLayout.setOnRefreshListener(this);
+        onRefresh();
     }
 
     @Override
@@ -73,8 +75,12 @@ public class HomePageFragment extends BaseFragment implements HomePageContract.V
 
     @Override
     public void onRefresh() {
-        mSwipeRefreshLayout.setRefreshing(true);
-        mHomePagePresenter.loadData();
+        if (!mSwipeRefreshLayout.isRefreshing()){
+            mSwipeRefreshLayout.setRefreshing(true);
+            mHomePagePresenter.loadData();
+        }else{
+            Toast.makeText(getActivity(),"is refresh",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

@@ -50,25 +50,13 @@ public class MainActivity extends AppCompatActivity {
     MovieFragment mMovieFragment;
     MusicFragment mMusicFragment;
     ReadFragment mReadFragment;
-//    DiscoverPagerFragment mDiscoverPagerFragment;
-//    CollectionPagerFragment mCollectionPagerFragment;
-//    DraftPagerFragment mDraftPagerFragment;
-//    ReleasePagerFragment mReleasePagerFragment;
-//    CarePagerFragment mCarePagerFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        OneSdkBuilder mBuilder = new OneSdkBuilder();
-        mBuilder.vertion = "4.0.2";
-        mBuilder.platform = "android";
-        mBuilder.uuid = "ffffffff-a90e-706a-63f7-ccf973aae5ee";
-        mBuilder.channel = "wdj";
-        OneSdk.init(getApplication(),mBuilder);
 
-//        ButterKnife.bind(this);
         initView();
         initToolbar();
         initNavigationView();

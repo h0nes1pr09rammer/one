@@ -1,5 +1,6 @@
 package com.lzq.one.presenter;
 
+import com.lzq.one.App;
 import com.lzq.one.BasePresenterImpl;
 import com.lzq.one.fragment.HomePageFragment;
 import com.lzq.one.onesdk.Constants;
@@ -28,28 +29,8 @@ public class HomePagePresenter extends BasePresenterImpl implements HomePageCont
 
     @Override
     public void loadData() {
-//        Subscription subscription = OneSdkHelper.getInstance().getIdList()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<IdListBean>() {
-//                    @Override
-//                    public void onCompleted() {
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                    }
-//
-//                    @Override
-//                    public void onNext(IdListBean idListBean) {
-//                        mHomePageFragment.showContent(idListBean.getData());
-//                    }
-//                });
-//        addSubscribe(subscription);
 
-
-        Subscription subscription = OneSdkHelper.getInstance().getOneList("4548")
+        Subscription subscription = OneSdkHelper.getInstance().getOneList(App.getInstance().getIdList().get(0))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<OnelistBean>() {

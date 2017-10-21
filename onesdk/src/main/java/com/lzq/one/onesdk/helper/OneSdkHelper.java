@@ -4,8 +4,11 @@ import com.lzq.one.onesdk.OneSdk;
 import com.lzq.one.onesdk.api.bean.EssayBean;
 import com.lzq.one.onesdk.api.bean.IdListBean;
 import com.lzq.one.onesdk.api.bean.MovieBean;
+import com.lzq.one.onesdk.api.bean.MovieListBean;
 import com.lzq.one.onesdk.api.bean.MusicBean;
+import com.lzq.one.onesdk.api.bean.MusicListBean;
 import com.lzq.one.onesdk.api.bean.OnelistBean;
+import com.lzq.one.onesdk.api.bean.ReadingListBean;
 
 import rx.Observable;
 
@@ -37,5 +40,14 @@ public class OneSdkHelper {
     }
     public Observable<MovieBean> getMovieContent(String itemId){
         return RetrofitHelper.getInstence().getOneService().getMovieContent(itemId,OneSdk.channel,OneSdk.vertion,OneSdk.uuid,OneSdk.platform);
+    }
+    public Observable<ReadingListBean> getReadingList(){
+        return RetrofitHelper.getInstence().getOneService().getReadingList(OneSdk.channel,OneSdk.vertion,OneSdk.uuid,OneSdk.platform);
+    }
+    public Observable<MusicListBean> getMusicList(){
+        return RetrofitHelper.getInstence().getOneService().getMusicList(OneSdk.channel,OneSdk.vertion,OneSdk.uuid,OneSdk.platform);
+    }
+    public Observable<MovieListBean> getMovieList(){
+        return RetrofitHelper.getInstence().getOneService().getMovieList(OneSdk.channel,OneSdk.vertion,OneSdk.uuid,OneSdk.platform);
     }
 }
