@@ -16,6 +16,7 @@ public class ImageLoader {
         Glide.with(context)
                 .load(url)
                 .placeholder(R.mipmap.ic_launcher)
+                .centerCrop()
                 .crossFade()
                 .into(imageView);
     }

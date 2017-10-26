@@ -24,8 +24,6 @@ import com.lzq.one.fragment.HomePageFragment;
 import com.lzq.one.fragment.MovieFragment;
 import com.lzq.one.fragment.MusicFragment;
 import com.lzq.one.fragment.ReadFragment;
-import com.lzq.one.onesdk.OneSdk;
-import com.lzq.one.onesdk.OneSdkBuilder;
 
 /**
  * Created by CTWLPC on 2017/10/20.
@@ -37,19 +35,19 @@ public class MainActivity extends AppCompatActivity {
     private static final int JOKE_PAGE_FORE = 4;
     private static final int JOKE_PAGE_ONE = 1;
 
-    Toolbar mToolbar;
-    DrawerLayout mDrawerLayout;
-    NavigationView mNavigationView;
+    private Toolbar mToolbar;
+    private DrawerLayout mDrawerLayout;
+    private NavigationView mNavigationView;
 
     private ImageView mImageView;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private int pagerNumber;
     private FragmentManager mFragmentManager;
 
-    HomePageFragment mHomePageFragment;
-    MovieFragment mMovieFragment;
-    MusicFragment mMusicFragment;
-    ReadFragment mReadFragment;
+    private HomePageFragment mHomePageFragment;
+    private MovieFragment mMovieFragment;
+    private MusicFragment mMusicFragment;
+    private ReadFragment mReadFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

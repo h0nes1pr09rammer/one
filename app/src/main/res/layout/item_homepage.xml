@@ -11,14 +11,18 @@
     android:layout_height="wrap_content"
     card_view:cardBackgroundColor="@android:color/white"
     card_view:cardCornerRadius="3dp"
-    card_view:cardElevation="2dp"
-    card_view:contentPadding="6dp">
+    card_view:cardElevation="2dp">
     <LinearLayout
         android:id="@+id/content_layout"
       android:orientation="vertical"
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:padding="2dp">
+      android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"/>
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -26,12 +30,6 @@
             android:gravity="center"
             android:text="test"
             android:padding="5dp"/>
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"
-            android:layout_gravity="center"/>
         <TextView
             android:id="@+id/forword"
             android:layout_width="wrap_content"
